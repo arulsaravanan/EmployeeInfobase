@@ -1,6 +1,3 @@
 Selenium
 ========
 xyz abcdefg
-
-
-abcdefghij
