@@ -5,6 +5,7 @@
     <classes>
 	    <class name="EmpInfo.Login" />
 	     <class name="EmpInfo.AddEmployee" />
+	      <class name="EmpInfo.AddJobType" />
 	</classes>
         <groups>
 	    <run>
