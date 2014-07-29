@@ -15,78 +15,83 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.net.*;
 
-
-public class ScreenshotOnFailureListener extends TestListenerAdapter
-{
+public class ScreenshotOnFailureListener extends TestListenerAdapter {
 	private int Count = 0;
-	//Take screen shot only for failed test case
+
+	/**
+	 * The method will be called whenever a test case is failed.
+	 */
 	@Override
 	public void onTestFailure(ITestResult tr) {
-	ScreenShot();
+		ScreenShot();
 	}
+
+	/**
+	 * The method will be called whenever a test case is skipped.
+	 */
 	@Override
-	
 	public void onTestSkipped(ITestResult tr) {
-	//ScreenShot();
+		// ScreenShot();
 	}
+
+	/**
+	 * The method will be called whenever a test case is passed.
+	 */
 	@Override
-
 	public void onTestSuccess(ITestResult tr) {
-	//ScreenShot();
-	
+		// ScreenShot();
+
 	}
 
+	/**
+	 * The method takes a screen shot for failed test case
+	 */
 	private void ScreenShot() {
 		try {
 
-		String NewFileNamePath;
+			String NewFileNamePath;
 
-		/*
-		//Code to get screen resolution
-		//Get the default toolkit
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		//Get the current screen size
-		Dimension scrnsize = toolkit.getScreenSize();
-		//Print the screen size
-		System.out.println ("Screen size : " + scrnsize);
-		*/    
+			// Get the dir path
+			File directory = new File(".");
+			// System.out.println(directory.getCanonicalPath());
 
-		//Get the dir path
-		File directory = new File (".");
-		//System.out.println(directory.getCanonicalPath()); 
+			// get current date time with Date() to create unique file name
+			DateFormat dateFormat = new SimpleDateFormat(
+					"dd_MMM_yyyy__hh_mm_ssaa");
+			// get current date time with Date()
+			Date date = new Date();
+			// System.out.println(dateFormat.format(date));
 
-		//get current date time with Date() to create unique file name
-		DateFormat dateFormat = new SimpleDateFormat("dd_MMM_yyyy__hh_mm_ssaa");
-		//get current date time with Date()
-		Date date = new Date();
-		//System.out.println(dateFormat.format(date));
+			// To identify the system
+			InetAddress ownIP = InetAddress.getLocalHost();
+			// System.out.println("IP of my system is := "+ownIP.getHostAddress());
 
-		//To identify the system
-		InetAddress ownIP=InetAddress.getLocalHost();
-		//System.out.println("IP of my system is := "+ownIP.getHostAddress()); 
+			NewFileNamePath = directory.getCanonicalPath() + "\\ScreenShots\\"
+					+ dateFormat.format(date) + "_" + ownIP.getHostAddress()
+					+ ".png";
+			System.out.println(NewFileNamePath);
 
-		NewFileNamePath = directory.getCanonicalPath()+ "\\ScreenShots\\"+ dateFormat.format(date)+"_"+ownIP.getHostAddress()+ ".png";
-		System.out.println(NewFileNamePath);
+			// Capture the screen shot of the area of the screen defined by the
+			// rectangle
+			Robot robot = new Robot();
+			BufferedImage bi = robot.createScreenCapture(new Rectangle(1280,
+					1024));
 
-		//Capture the screen shot of the area of the screen defined by the rectangle
-		Robot robot = new Robot();
-		BufferedImage bi=robot.createScreenCapture(new Rectangle(1280,1024));
-		ImageIO.write(bi, "png", new File(NewFileNamePath));
-		Count++;//Assign each screen shot a number
-	   //  NewFileNamePath = "<a href="http://draft.blogger.com/+NewFileNamePath+">ScreenShot"+ Count + "</a>";
-		  NewFileNamePath = "<a href="+NewFileNamePath+">ScreenShot"+ Count + "</a>";
-			
-		//Place the reference in TestNG web report arul123
-		  
-		Reporter.log(NewFileNamePath);
+			ImageIO.write(bi, "png", new File(NewFileNamePath));
+			Count++;
+			// Assign each screen shot a number
 
+			NewFileNamePath = "<a href=" + NewFileNamePath + ">ScreenShot"
+					+ Count + "</a>";
 
-		} 
-		catch (AWTException e) {
-		e.printStackTrace();
-		} 
-		catch (IOException e) {
-		e.printStackTrace();
+			// Place the reference in TestNG web report
+			Reporter.log(NewFileNamePath);
+
+		} catch (AWTException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		}
+
+	}
 }
