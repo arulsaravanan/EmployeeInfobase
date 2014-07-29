@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [EmployeeInfobase by groups]">
+  <test name="GRP-AddEmp,login(failed)">
+    <groups>
+      <run>
+        <include name="AddEmp"/>
+        <include name="login"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="EmpInfo.AddEmployee">
+        <methods>
+          <include name="save"/>
+          <include name="viewalleditpreview"/>
+          <include name="edit"/>
+          <include name="viewalledit"/>
+          <include name="title"/>
+          <include name="preview"/>
+          <include name="viewAll"/>
+          <include name="deleteCancel"/>
+          <include name="addEmployee"/>
+        </methods>
+      </class> <!-- EmpInfo.AddEmployee -->
+    </classes>
+  </test> <!-- GRP-AddEmp,login(failed) -->
+</suite> <!-- Failed suite [EmployeeInfobase by groups] -->

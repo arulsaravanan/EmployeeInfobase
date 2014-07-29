@@ -3,12 +3,20 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="EmpInfo.Login">
+      <class name="EmpInfo.AddEmployee">
         <methods>
-          <include name="loginValidData"/>
-          <include name="afterTest"/>
+          <include name="save"/>
+          <include name="viewalleditpreview"/>
+          <include name="loginData"/>
+          <include name="edit"/>
+          <include name="viewalledit"/>
+          <include name="title"/>
+          <include name="viewall"/>
+          <include name="preview"/>
+          <include name="deletecancel"/>
+          <include name="addEmployee"/>
         </methods>
-      </class> <!-- EmpInfo.Login -->
+      </class> <!-- EmpInfo.AddEmployee -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
